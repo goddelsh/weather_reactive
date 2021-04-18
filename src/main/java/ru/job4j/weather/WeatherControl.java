@@ -38,7 +38,9 @@ public class WeatherControl {
 
     @GetMapping(value = "/hottest")
     public Mono<Weather> hottest() {
-        Mono<Weather> data = weathers.all().reduce( (a, b) -> a.getTemperature() > b.getTemperature() ? a : b);
+        Mono<Weather> data = weathers
+                .all()
+                .reduce((a, b) -> a.getTemperature() > b.getTemperature() ? a : b);
         return data;
     }
 
